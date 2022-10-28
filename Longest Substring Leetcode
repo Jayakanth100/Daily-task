@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int n = s.size();
+        int maxi = 0;
+        int right = 0 , left = 0;
+        vector<int> vis(256 , -1);
+        while(right < n)
+        {
+            if( vis[s[right]] != -1 ) left = max(vis[s[right]] + 1 , left) ;
+            
+            vis[s[right]] = right;
+            maxi = max(maxi , right - left + 1);
+            right++;
+        }
+        return maxi;
+    }
+};
